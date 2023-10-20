@@ -21,7 +21,26 @@ public class Cartucho {
     @JoinColumn(name = "tipo_cartucho_id")
     private TipoCartucho tipoCartucho;
 
+
+    @OneToOne
+    @JoinColumn(name = "marca_id")
+    private  Marca  marca;
     private Date fecha_creacion;
+
+
+    public Cartucho() {
+        color = new Color();
+        tipoCartucho = new TipoCartucho();
+        marca = new Marca();
+    }
+
+    public Marca getMarca() {
+        return marca;
+    }
+
+    public void setMarca(Marca marca) {
+        this.marca = marca;
+    }
 
     @PrePersist
     public void prePersist(){
@@ -36,10 +55,7 @@ public class Cartucho {
         this.color = color;
     }
 
-    public Cartucho() {
-        color = new Color();
-        tipoCartucho = new TipoCartucho();
-    }
+
     public TipoCartucho getTipoCartucho() {
         return tipoCartucho;
     }
