@@ -18,20 +18,33 @@ public class Cartucho {
     private Color  color;
 
     @OneToOne
+    @JoinColumn(name = "marca_id")
+    private  Marca  marca;
+
+    @OneToOne
     @JoinColumn(name = "tipo_cartucho_id")
     private TipoCartucho tipoCartucho;
 
-
     @OneToOne
-    @JoinColumn(name = "marca_id")
-    private  Marca  marca;
+    @JoinColumn(name = "tipo_carga_id")
+    private TipoCarga tipoCarga;
+
     private Date fecha_creacion;
+
+    public TipoCarga getTipoCarga() {
+        return tipoCarga;
+    }
+
+    public void setTipoCarga(TipoCarga tipoCarga) {
+        this.tipoCarga = tipoCarga;
+    }
 
 
     public Cartucho() {
         color = new Color();
         tipoCartucho = new TipoCartucho();
         marca = new Marca();
+        tipoCarga = new TipoCarga();
     }
 
     public Marca getMarca() {
@@ -95,6 +108,7 @@ public class Cartucho {
     public void setCapacidad(String capacidad) {
         this.capacidad = capacidad;
     }
+
 
     public Date getFecha_creacion() {
         return fecha_creacion;
