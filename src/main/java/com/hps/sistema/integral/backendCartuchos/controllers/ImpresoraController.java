@@ -1,8 +1,7 @@
 package com.hps.sistema.integral.backendCartuchos.controllers;
 
-
-import com.hps.sistema.integral.backendCartuchos.models.entities.Cartucho;
-import com.hps.sistema.integral.backendCartuchos.services.CartuchoService;
+import com.hps.sistema.integral.backendCartuchos.models.entities.Impresora;
+import com.hps.sistema.integral.backendCartuchos.services.ImpresoraService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,18 +12,20 @@ import java.util.Optional;
 
 @CrossOrigin(origins = "*",allowedHeaders = "*")
 @RestController
-public class CartuchoController {
+public class ImpresoraController {
     @Autowired
-    private CartuchoService  service;
+    private ImpresoraService service;
 
-    @GetMapping("/cartuchos")
-    public List<Cartucho> listar(){
+
+
+    @GetMapping("/impresoras")
+    public List<Impresora> listar(){
         return service.listar();
     }
 
-    @GetMapping("/cartuchos/{id}")
+    @GetMapping("/impresoras/{id}")
     public ResponseEntity<?> detalle(@PathVariable Long id){
-        Optional<Cartucho> data = service.porId(id);
+        Optional<Impresora> data = service.porId(id);
         if (data.isPresent()){
             return ResponseEntity.ok().body(data.get()) ;
         }
@@ -32,33 +33,29 @@ public class CartuchoController {
 
     }
 
-    @PostMapping("/cartuchos")
+    @PostMapping("/impresoras")
     //@ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<?> crear(@RequestBody Cartucho data){
+    public ResponseEntity<?> crear(@RequestBody Impresora data){
         return  ResponseEntity.status(HttpStatus.CREATED).body(service.guardar(data));
     }
 
-    @PutMapping ("/cartuchos/{id}")
-    public  ResponseEntity<?> editar(@RequestBody Cartucho updata,@PathVariable Long id){
-        Optional<Cartucho> data = service.porId(id);
+    @PutMapping("/impresoras/{id}")
+    public  ResponseEntity<?> editar(@RequestBody Impresora updata,@PathVariable Long id){
+        Optional<Impresora> data = service.porId(id);
         if(data.isPresent()){
-            Cartucho dataDb = data.get();
-            dataDb.setModelo(updata.getModelo());
-            dataDb.setNombre(updata.getNombre());
-            dataDb.setCapacidad(updata.getCapacidad());
-            dataDb.setModelo(updata.getModelo());
+            Impresora dataDb = data.get();
             dataDb.setMarca(updata.getMarca());
-            dataDb.setTipoCarga(updata.getTipoCarga());
-            dataDb.setTipoCartucho(updata.getTipoCartucho());
+            dataDb.setModelo(updata.getModelo());
+            dataDb.setTipoImpresora(updata.getTipoImpresora());
 
             return ResponseEntity.status(HttpStatus.CREATED).body(service.guardar(dataDb));
         }
         return ResponseEntity.notFound().build();
     }
 
-    @DeleteMapping("/cartuchos/{id}")
+    @DeleteMapping("/impresoras/{id}")
     public ResponseEntity<?> eliminar(@PathVariable Long id){
-        Optional<Cartucho> data = service.porId(id);
+        Optional<Impresora> data = service.porId(id);
         if(data.isPresent()){
             service.eliminar(id);
             return ResponseEntity.noContent().build();
