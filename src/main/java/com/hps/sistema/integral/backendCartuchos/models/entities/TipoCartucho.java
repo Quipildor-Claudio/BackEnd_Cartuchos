@@ -2,11 +2,12 @@ package com.hps.sistema.integral.backendCartuchos.models.entities;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name = "tipo_cartuchos")
-public class TipoCartucho {
+public class TipoCartucho implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

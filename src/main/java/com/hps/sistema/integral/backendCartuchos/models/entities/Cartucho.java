@@ -2,17 +2,21 @@ package com.hps.sistema.integral.backendCartuchos.models.entities;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "cartuchos")
-public class Cartucho {
+public class Cartucho implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
     private String modelo;
     private String capacidad;
+
     @OneToOne (fetch = FetchType.EAGER)
     @JoinColumn(name = "color_id")
     private Color  color;
@@ -28,6 +32,10 @@ public class Cartucho {
     @OneToOne
     @JoinColumn(name = "tipo_carga_id")
     private TipoCarga tipoCarga;
+
+
+    @ManyToMany(mappedBy = "cartuchos")
+    private List<Impresora> impresoras;
 
     private Date fecha_creacion;
 
@@ -45,6 +53,7 @@ public class Cartucho {
         tipoCartucho = new TipoCartucho();
         marca = new Marca();
         tipoCarga = new TipoCarga();
+
     }
 
     public Marca getMarca() {
@@ -117,4 +126,6 @@ public class Cartucho {
     public void setFecha_creacion(Date fecha_creacion) {
         this.fecha_creacion = fecha_creacion;
     }
+
+
 }

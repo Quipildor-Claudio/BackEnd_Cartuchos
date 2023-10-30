@@ -1,12 +1,16 @@
 package com.hps.sistema.integral.backendCartuchos.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "solicitudes")
-public class Solicitud {
+public class Solicitud implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -14,6 +18,9 @@ public class Solicitud {
     private String observacion;
     private String justificacion;
     private Integer cantidad;
+
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<Cartucho> cartuchos;
 
 
 
@@ -31,6 +38,7 @@ public class Solicitud {
 
     public Solicitud() {
         estado= new Estado();
+        cartuchos= new ArrayList<>();
     }
 
     public Estado getEstado() {
@@ -95,5 +103,13 @@ public class Solicitud {
 
     public void setFecha_actualizacion(Date fecha_actualizacion) {
         this.fecha_actualizacion = fecha_actualizacion;
+    }
+
+    public List<Cartucho> getCartuchos() {
+        return cartuchos;
+    }
+
+    public void setCartuchos(List<Cartucho> cartuchos) {
+        this.cartuchos = cartuchos;
     }
 }

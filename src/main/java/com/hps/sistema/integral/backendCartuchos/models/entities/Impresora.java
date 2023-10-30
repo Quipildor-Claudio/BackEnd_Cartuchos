@@ -2,11 +2,14 @@ package com.hps.sistema.integral.backendCartuchos.models.entities;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "impresoras")
-public class Impresora {
+public class Impresora implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,6 +23,13 @@ public class Impresora {
     @OneToOne
     @JoinColumn(name = "marca_id")
     private Marca marca;
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "impresora_cartucho",
+            joinColumns = @JoinColumn(name = "impresora_id"),
+            inverseJoinColumns = @JoinColumn(name = "cartucho_id")
+    )
+    private List<Cartucho> cartuchos;
 
     public Marca getMarca() {
         return marca;
@@ -37,6 +47,7 @@ public class Impresora {
     public Impresora() {
         marca = new Marca();
         tipoImpresora= new TipoImpresora();
+        cartuchos = new ArrayList<>();
     }
 
     public Long getId() {
@@ -69,5 +80,13 @@ public class Impresora {
 
     public void setTipoImpresora(TipoImpresora tipoImpresora) {
         this.tipoImpresora = tipoImpresora;
+    }
+
+    public List<Cartucho> getCartuchos() {
+        return cartuchos;
+    }
+
+    public void setCartuchos(List<Cartucho> cartuchos) {
+        this.cartuchos = cartuchos;
     }
 }
