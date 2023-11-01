@@ -17,28 +17,30 @@ public class Cartucho implements Serializable {
     private String modelo;
     private String capacidad;
 
-    @OneToOne (fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "color_id")
     private Color  color;
 
-    @OneToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "marca_id")
     private  Marca  marca;
 
-    @OneToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "tipo_cartucho_id")
     private TipoCartucho tipoCartucho;
 
-    @OneToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "tipo_carga_id")
     private TipoCarga tipoCarga;
 
 
-    @ManyToMany(mappedBy = "cartuchos")
-    private List<Impresora> impresoras;
-
     private Date fecha_creacion;
 
+
+    public Cartucho() {
+
+
+    }
     public TipoCarga getTipoCarga() {
         return tipoCarga;
     }
@@ -47,14 +49,6 @@ public class Cartucho implements Serializable {
         this.tipoCarga = tipoCarga;
     }
 
-
-    public Cartucho() {
-        color = new Color();
-        tipoCartucho = new TipoCartucho();
-        marca = new Marca();
-        tipoCarga = new TipoCarga();
-
-    }
 
     public Marca getMarca() {
         return marca;

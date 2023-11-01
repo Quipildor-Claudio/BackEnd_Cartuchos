@@ -24,8 +24,8 @@ public class ImpresoraServiceImpl implements  ImpresoraService {
     }
 
     @Override
-    public Impresora guardar(Impresora data) {
-        return repository.save(data);
+    public Impresora guardar(Impresora impresora) {
+        return repository.save(impresora);
     }
 
     @Override

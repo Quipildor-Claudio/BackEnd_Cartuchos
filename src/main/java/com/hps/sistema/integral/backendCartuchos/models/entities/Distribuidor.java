@@ -14,12 +14,13 @@ public class Distribuidor implements Serializable {
     private String nombre;
     private String descripcion;
     private Date fecha_creacion;
+
+
+    public Distribuidor() {
+    }
     @PrePersist
     public void prePersist(){
         this.fecha_creacion=new Date();
-    }
-
-    public Distribuidor() {
     }
 
     public Long getId() {

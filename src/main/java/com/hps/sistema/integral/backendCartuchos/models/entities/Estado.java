@@ -13,16 +13,16 @@ public class Estado  implements Serializable {
     private Long id;
     private String descripcion;
     private Date fecha_creacion;
-    @PrePersist
-    public void prePersist(){
-        this.fecha_creacion=new Date();
-    }
+
 
     // Constructor
     public Estado() {
 
     }
-
+    @PrePersist
+    public void prePersist(){
+        this.fecha_creacion=new Date();
+    }
     public Long getId() {
         return id;
     }

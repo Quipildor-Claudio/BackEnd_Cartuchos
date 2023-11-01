@@ -7,21 +7,24 @@ import java.util.Date;
 
 @Entity
 @Table(name = "marcas")
-public class Marca implements Serializable {
+public class Marca implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
+
+
+
     private Date fecha_creacion;
 
+
+    // Constructor
+    public Marca() {
+    }
     @PrePersist
     public void prePersist(){
         this.fecha_creacion=new Date();
     }
-    // Constructor
-    public Marca() {
-    }
-
     public Long getId() {
         return id;
     }

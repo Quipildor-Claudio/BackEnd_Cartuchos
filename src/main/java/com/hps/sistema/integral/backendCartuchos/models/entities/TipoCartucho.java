@@ -15,13 +15,15 @@ public class TipoCartucho implements Serializable {
 
     private Date fecha_creacion;
 
+
+
+    //Constructor
+    public TipoCartucho() {}
+
     @PrePersist
     public void prePersist(){
         this.fecha_creacion=new Date();
     }
-
-    //Constructor
-    public TipoCartucho() {}
 
     public Long getId() {
         return id;

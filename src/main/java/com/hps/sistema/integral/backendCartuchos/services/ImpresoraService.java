@@ -9,6 +9,6 @@ import java.util.Optional;
 public interface ImpresoraService {
     List<Impresora> listar();
     Optional<Impresora> porId(Long id);
-    Impresora guardar(Impresora data);
+    Impresora guardar(Impresora impresora);
     void eliminar(Long id);
 }

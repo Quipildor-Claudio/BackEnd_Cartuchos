@@ -14,22 +14,21 @@ public class Impresora implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String modelo;
-    private Date fecha_creacion;
 
-    @OneToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "tipo_impresora_id")
     private TipoImpresora tipoImpresora;
 
-    @OneToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "marca_id")
     private Marca marca;
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "impresora_cartucho",
-            joinColumns = @JoinColumn(name = "impresora_id"),
-            inverseJoinColumns = @JoinColumn(name = "cartucho_id")
-    )
-    private List<Cartucho> cartuchos;
+
+    private Date fecha_creacion;
+
+
+    public Impresora() {
+
+    }
 
     public Marca getMarca() {
         return marca;
@@ -44,11 +43,7 @@ public class Impresora implements Serializable {
         this.fecha_creacion=new Date();
     }
     // Constructor
-    public Impresora() {
-        marca = new Marca();
-        tipoImpresora= new TipoImpresora();
-        cartuchos = new ArrayList<>();
-    }
+
 
     public Long getId() {
         return id;
@@ -82,11 +77,4 @@ public class Impresora implements Serializable {
         this.tipoImpresora = tipoImpresora;
     }
 
-    public List<Cartucho> getCartuchos() {
-        return cartuchos;
-    }
-
-    public void setCartuchos(List<Cartucho> cartuchos) {
-        this.cartuchos = cartuchos;
-    }
 }

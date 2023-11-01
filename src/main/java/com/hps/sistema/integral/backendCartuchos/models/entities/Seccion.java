@@ -2,9 +2,11 @@ package com.hps.sistema.integral.backendCartuchos.models.entities;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+
 @Entity
 @Table(name = "secciones")
-public class Seccion {
+public class Seccion implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)

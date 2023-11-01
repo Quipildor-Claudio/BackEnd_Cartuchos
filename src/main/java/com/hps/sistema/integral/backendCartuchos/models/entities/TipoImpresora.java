@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "tipo_impresoras")
-public class TipoImpresora implements Serializable {
+public class TipoImpresora implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -15,13 +15,14 @@ public class TipoImpresora implements Serializable {
 
     private Date fecha_creacion;
 
-    @PrePersist
-    public void prePersist(){
-        this.fecha_creacion=new Date();
-    }
+
     //Cosntructor
     public TipoImpresora() {
 
+    }
+    @PrePersist
+    public void prePersist(){
+        this.fecha_creacion=new Date();
     }
 
     public Long getId() {

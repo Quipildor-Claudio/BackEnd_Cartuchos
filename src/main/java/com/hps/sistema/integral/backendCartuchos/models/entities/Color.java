@@ -13,13 +13,14 @@ public class Color implements Serializable {
     private Long id;
     private String nombre;
     private Date fecha_creacion;
+    public Color() {
+    }
     @PrePersist
     public void prePersist(){
         this.fecha_creacion=new Date();
     }
 
-    public Color() {
-    }
+
 
     public Long getId() {
         return id;

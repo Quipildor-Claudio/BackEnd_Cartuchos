@@ -19,8 +19,8 @@ public class Solicitud implements Serializable {
     private String justificacion;
     private Integer cantidad;
 
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    private List<Cartucho> cartuchos;
+    //@OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    //private List<Cartucho> cartuchos;
 
 
 
@@ -37,8 +37,7 @@ public class Solicitud implements Serializable {
     }
 
     public Solicitud() {
-        estado= new Estado();
-        cartuchos= new ArrayList<>();
+
     }
 
     public Estado getEstado() {
@@ -105,11 +104,5 @@ public class Solicitud implements Serializable {
         this.fecha_actualizacion = fecha_actualizacion;
     }
 
-    public List<Cartucho> getCartuchos() {
-        return cartuchos;
-    }
 
-    public void setCartuchos(List<Cartucho> cartuchos) {
-        this.cartuchos = cartuchos;
-    }
 }

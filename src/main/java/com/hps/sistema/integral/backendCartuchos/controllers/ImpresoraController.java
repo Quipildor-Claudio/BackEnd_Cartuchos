@@ -35,8 +35,8 @@ public class ImpresoraController {
 
     @PostMapping("/impresoras")
     //@ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<?> crear(@RequestBody Impresora data){
-        return  ResponseEntity.status(HttpStatus.CREATED).body(service.guardar(data));
+    public ResponseEntity<?> crear(@RequestBody Impresora impresora){
+        return  ResponseEntity.status(HttpStatus.CREATED).body(service.guardar(impresora));
     }
 
     @PutMapping("/impresoras/{id}")
@@ -47,7 +47,6 @@ public class ImpresoraController {
             dataDb.setMarca(updata.getMarca());
             dataDb.setModelo(updata.getModelo());
             dataDb.setTipoImpresora(updata.getTipoImpresora());
-
             return ResponseEntity.status(HttpStatus.CREATED).body(service.guardar(dataDb));
         }
         return ResponseEntity.notFound().build();

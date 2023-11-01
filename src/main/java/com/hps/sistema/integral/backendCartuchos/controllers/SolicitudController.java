@@ -49,7 +49,7 @@ public class SolicitudController {
             dataDb.setEstado(updata.getEstado());
             dataDb.setJustificacion(updata.getJustificacion());
             dataDb.setObservacion(updata.getObservacion());
-            dataDb.setCartuchos(updata.getCartuchos());
+           // dataDb.setCartuchos(updata.getCartuchos());
             dataDb.setFecha_actualizacion(new Date());
             return ResponseEntity.status(HttpStatus.CREATED).body(service.guardar(dataDb));
         }
