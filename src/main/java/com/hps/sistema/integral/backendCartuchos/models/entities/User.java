@@ -1,5 +1,6 @@
 package com.hps.sistema.integral.backendCartuchos.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -21,11 +22,11 @@ public class User {
     private String email;
 
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "persona_id")
     private Persona persona;
 
-
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Rol> roles;
     @Temporal(TemporalType.DATE)
@@ -45,8 +46,7 @@ public class User {
     }
 
     public User() {
-        roles= new ArrayList<>();
-        persona = new Persona();
+
     }
 
     public Long getId() {
@@ -90,5 +90,11 @@ public class User {
         this.createAt = createAt;
     }
 
+    public List<Rol> getRoles() {
+        return roles;
+    }
 
+    public void setRoles(List<Rol> roles) {
+        this.roles = roles;
+    }
 }

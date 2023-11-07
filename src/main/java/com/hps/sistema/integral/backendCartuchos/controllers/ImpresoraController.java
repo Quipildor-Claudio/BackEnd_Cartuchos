@@ -46,7 +46,9 @@ public class ImpresoraController {
             Impresora dataDb = data.get();
             dataDb.setMarca(updata.getMarca());
             dataDb.setModelo(updata.getModelo());
+            dataDb.setDescripcion(updata.getDescripcion());
             dataDb.setTipoImpresora(updata.getTipoImpresora());
+            dataDb.setCartuchos(updata.getCartuchos());
             return ResponseEntity.status(HttpStatus.CREATED).body(service.guardar(dataDb));
         }
         return ResponseEntity.notFound().build();

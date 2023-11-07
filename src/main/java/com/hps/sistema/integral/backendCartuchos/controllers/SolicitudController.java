@@ -46,10 +46,9 @@ public class SolicitudController {
             Solicitud dataDb = data.get();
            dataDb.setCantidad(updata.getCantidad());
            dataDb.setDescripcion(updata.getDescripcion());
-            dataDb.setEstado(updata.getEstado());
             dataDb.setJustificacion(updata.getJustificacion());
             dataDb.setObservacion(updata.getObservacion());
-           // dataDb.setCartuchos(updata.getCartuchos());
+
             dataDb.setFecha_actualizacion(new Date());
             return ResponseEntity.status(HttpStatus.CREATED).body(service.guardar(dataDb));
         }

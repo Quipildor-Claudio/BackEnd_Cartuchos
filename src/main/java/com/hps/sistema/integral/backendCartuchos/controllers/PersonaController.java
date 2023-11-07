@@ -45,6 +45,7 @@ public class PersonaController {
             dataDb.setApellido(updata.getApellido());
             dataDb.setNombre(updata.getNombre());
             dataDb.setDni(updata.getDni());
+            dataDb.setServicio(updata.getServicio());
             return ResponseEntity.status(HttpStatus.CREATED).body(service.guardar(dataDb));
         }
         return ResponseEntity.notFound().build();

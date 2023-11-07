@@ -13,9 +13,11 @@ public class Cartucho implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nombre;
+
     private String modelo;
     private String capacidad;
+
+    private String descripcion;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "color_id")
@@ -88,13 +90,7 @@ public class Cartucho implements Serializable {
         this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
 
     public String getModelo() {
         return modelo;
@@ -121,5 +117,11 @@ public class Cartucho implements Serializable {
         this.fecha_creacion = fecha_creacion;
     }
 
+    public String getDescripcion() {
+        return descripcion;
+    }
 
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
 }

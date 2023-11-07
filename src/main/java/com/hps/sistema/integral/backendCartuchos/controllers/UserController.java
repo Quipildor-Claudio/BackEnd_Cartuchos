@@ -51,6 +51,7 @@ public class UserController {
             dataDb.setPassword(updata.getPassword());
             dataDb.setEmail(updata.getEmail());
             dataDb.setPersona(updata.getPersona());
+            dataDb.setRoles(updata.getRoles());
             return ResponseEntity.status(HttpStatus.CREATED).body(service.guardar(dataDb));
         }
         return ResponseEntity.notFound().build();
@@ -67,21 +68,10 @@ public class UserController {
     }
 
     // MANEJO DE ROLES
-    @GetMapping("/roles")
-    public List<Rol> listarRol(){
-        return rolService.listar();
-    }
 
-    @GetMapping("/rol/{id}")
-    public ResponseEntity<?> detalleRol(@PathVariable Long id){
-        Optional<Rol> rol = rolService.porId(id);
-        if (rol.isPresent()){
-            return ResponseEntity.ok().body(rol.get()) ;
-        }
-        return ResponseEntity.notFound().build();
-    }
 
-    @GetMapping("/userbyname/{name}")
+
+    @GetMapping("/user/userbyname/{name}")
     public ResponseEntity<?> userNombre(@PathVariable String name){
         Optional<User> usuario = service.findByUsername(name);
         if (usuario.isPresent()){

@@ -18,18 +18,14 @@ public class Solicitud implements Serializable {
     private String observacion;
     private String justificacion;
     private Integer cantidad;
-
-    //@OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    //private List<Cartucho> cartuchos;
-
-
-
-    @ManyToOne
-    @JoinColumn(name = "estado_id")
-    private  Estado estado;
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Cartucho> cartuchos;
 
     private Date fecha_creacion;
     private Date fecha_actualizacion;
+
+
 
     @PrePersist
     public void prePersist(){
@@ -40,13 +36,6 @@ public class Solicitud implements Serializable {
 
     }
 
-    public Estado getEstado() {
-        return estado;
-    }
-
-    public void setEstado(Estado estado) {
-        this.estado = estado;
-    }
 
     public Long getId() {
         return id;
@@ -104,5 +93,11 @@ public class Solicitud implements Serializable {
         this.fecha_actualizacion = fecha_actualizacion;
     }
 
+    public List<Cartucho> getCartuchos() {
+        return cartuchos;
+    }
 
+    public void setCartuchos(List<Cartucho> cartuchos) {
+        this.cartuchos = cartuchos;
+    }
 }

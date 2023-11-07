@@ -1,5 +1,6 @@
 package com.hps.sistema.integral.backendCartuchos.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -15,6 +16,8 @@ public class Impresora implements Serializable {
     private Long id;
     private String modelo;
 
+    private String descripcion;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "tipo_impresora_id")
     private TipoImpresora tipoImpresora;
@@ -22,6 +25,10 @@ public class Impresora implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "marca_id")
     private Marca marca;
+
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Cartucho> cartuchos;
 
     private Date fecha_creacion;
 
@@ -75,6 +82,22 @@ public class Impresora implements Serializable {
 
     public void setTipoImpresora(TipoImpresora tipoImpresora) {
         this.tipoImpresora = tipoImpresora;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public List<Cartucho> getCartuchos() {
+        return cartuchos;
+    }
+
+    public void setCartuchos(List<Cartucho> cartuchos) {
+        this.cartuchos = cartuchos;
     }
 
 }

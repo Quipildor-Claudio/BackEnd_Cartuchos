@@ -44,8 +44,8 @@ public class CartuchoController {
         if(data.isPresent()){
             Cartucho dataDb = data.get();
             dataDb.setModelo(updata.getModelo());
-            dataDb.setNombre(updata.getNombre());
             dataDb.setCapacidad(updata.getCapacidad());
+            dataDb.setDescripcion(updata.getDescripcion());
             dataDb.setModelo(updata.getModelo());
             dataDb.setMarca(updata.getMarca());
             dataDb.setTipoCarga(updata.getTipoCarga());

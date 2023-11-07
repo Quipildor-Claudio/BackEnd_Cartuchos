@@ -8,4 +8,7 @@ import java.util.Optional;
 public interface RolService {
     List<Rol> listar();
     Optional<Rol> porId(Long id);
+
+   Rol guardar(Rol rol);
+    void eliminar(Long id);
 }

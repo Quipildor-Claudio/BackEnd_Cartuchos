@@ -3,6 +3,7 @@ package com.hps.sistema.integral.backendCartuchos.models.entities;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @Table(name = "personas")
@@ -16,15 +17,23 @@ public class Persona implements Serializable {
     private String nombre;
     private Integer dni;
 
-    @OneToOne
-    @JoinColumn(name = "division_id")
-    private Division division;
+    @ManyToOne
+    @JoinColumn(name = "servicio_id")
+    private Servicio servicio;
+
+    @Temporal(TemporalType.DATE)
+    private Date createAt;
 
     //------------------- CONSTRUCTOR
-    public Persona() {
-        division = new Division();
-    }
 
+
+    public Persona() {
+
+    }
+    @PrePersist
+    public void prePersist(){
+        this.createAt=new Date();
+    }
     public Long getId() {
         return id;
     }
@@ -57,13 +66,20 @@ public class Persona implements Serializable {
         this.dni = dni;
     }
 
-    public Division getDivision() {
-        return division;
+
+    public Servicio getServicio() {
+        return servicio;
     }
 
-    public void setDivision(Division division) {
-        this.division = division;
+    public void setServicio(Servicio servicio) {
+        this.servicio = servicio;
     }
 
+    public Date getCreateAt() {
+        return createAt;
+    }
 
+    public void setCreateAt(Date createAt) {
+        this.createAt = createAt;
+    }
 }
