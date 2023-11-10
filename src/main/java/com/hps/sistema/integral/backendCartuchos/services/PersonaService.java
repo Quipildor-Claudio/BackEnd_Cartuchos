@@ -11,4 +11,6 @@ public interface PersonaService {
     Optional<Persona> porId(Long id);
     Persona guardar(Persona data);
     void eliminar(Long id);
+
+    Optional<Persona> findByDni(Integer dni);
 }

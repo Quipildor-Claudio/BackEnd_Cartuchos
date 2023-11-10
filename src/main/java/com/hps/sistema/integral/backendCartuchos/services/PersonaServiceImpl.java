@@ -31,4 +31,9 @@ public class PersonaServiceImpl implements PersonaService{
     public void eliminar(Long id) {
         repository.deleteById(id);
     }
+
+    @Override
+    public Optional<Persona> findByDni(Integer dni) {
+        return repository.findByDni(dni);
+    }
 }

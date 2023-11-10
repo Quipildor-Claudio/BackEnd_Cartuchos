@@ -52,6 +52,7 @@ public class UserController {
             dataDb.setEmail(updata.getEmail());
             dataDb.setPersona(updata.getPersona());
             dataDb.setRoles(updata.getRoles());
+            dataDb.setEnabled(updata.getEnabled());
             return ResponseEntity.status(HttpStatus.CREATED).body(service.guardar(dataDb));
         }
         return ResponseEntity.notFound().build();

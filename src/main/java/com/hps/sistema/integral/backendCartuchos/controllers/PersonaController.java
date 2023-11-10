@@ -60,4 +60,14 @@ public class PersonaController {
         }
         return ResponseEntity.notFound().build();
     }
+
+    @GetMapping("/pordni/{dni}")
+    public ResponseEntity<?> personaDni(@PathVariable Integer dni){
+        Optional<Persona> persona = service.findByDni(dni);
+        if (persona.isPresent()){
+            return ResponseEntity.ok().body(persona.get()) ;
+        }
+        return ResponseEntity.notFound().build(); /** responde con un 404 el build genra el mensaje*/
+
+    }
 }

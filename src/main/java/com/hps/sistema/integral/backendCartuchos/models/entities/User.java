@@ -21,13 +21,18 @@ public class User {
     @Column(unique = true)
     private String email;
 
+    private Boolean enabled;
 
     @ManyToOne
     @JoinColumn(name = "persona_id")
     private Persona persona;
 
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany
+    @JoinTable(name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "rol_id"),
+            uniqueConstraints ={@UniqueConstraint(columnNames = {"user_id","rol_id"})}
+    )
     private List<Rol> roles;
     @Temporal(TemporalType.DATE)
     private Date createAt;
@@ -96,5 +101,13 @@ public class User {
 
     public void setRoles(List<Rol> roles) {
         this.roles = roles;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 }
