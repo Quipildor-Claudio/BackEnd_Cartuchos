@@ -11,4 +11,9 @@ public interface ImpresoraService {
     Optional<Impresora> porId(Long id);
     Impresora guardar(Impresora impresora);
     void eliminar(Long id);
+
+    public List<Impresora> findByModeloAndMarcaNombreContainingIgnoreCase(String modelo,String nombre);
+    public List<Impresora> findByMarcaNombreContainingIgnoreCase(String nombre);
+    public List<Impresora> findByModeloContainingIgnoreCase(String modelo);
+
 }

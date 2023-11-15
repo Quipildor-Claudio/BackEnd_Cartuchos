@@ -32,4 +32,19 @@ public class ImpresoraServiceImpl implements  ImpresoraService {
     public void eliminar(Long id) {
             repository.deleteById(id);
     }
+
+    @Override
+    public List<Impresora> findByModeloAndMarcaNombreContainingIgnoreCase(String modelo, String nombre) {
+        return repository.findByModeloAndMarcaNombreContainingIgnoreCase(modelo,nombre);
+    }
+
+    @Override
+    public List<Impresora> findByMarcaNombreContainingIgnoreCase(String nombre) {
+        return repository.findByMarcaNombreContainingIgnoreCase(nombre);
+    }
+
+    @Override
+    public List<Impresora> findByModeloContainingIgnoreCase(String modelo) {
+        return repository.findByModeloContainingIgnoreCase(modelo);
+    }
 }

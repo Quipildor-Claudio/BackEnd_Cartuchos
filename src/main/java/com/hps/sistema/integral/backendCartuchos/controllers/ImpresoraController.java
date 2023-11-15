@@ -63,4 +63,20 @@ public class ImpresoraController {
         }
         return ResponseEntity.notFound().build();
     }
+
+    @GetMapping("/buscar-impresora/{modelo}/{nombre}")
+    public List<Impresora> filtrarImpresora(@PathVariable String modelo,String nombre){
+        return service.findByModeloAndMarcaNombreContainingIgnoreCase(modelo,nombre);
+    }
+
+    @GetMapping("/buscar-modelo/{modelo}")
+    public List<Impresora> filtrarImpresoraModelo(@PathVariable String modelo){
+        return service.findByModeloContainingIgnoreCase(modelo);
+    }
+
+    @GetMapping("/buscar-marca/{nombre}")
+    public List<Impresora> filtrarImpresoraMarca(@PathVariable String nombre){
+        return service.findByMarcaNombreContainingIgnoreCase(nombre);
+    }
+
 }
