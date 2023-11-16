@@ -11,4 +11,7 @@ public interface CartuchoService {
     Optional<Cartucho> porId(Long id);
     Cartucho guardar(Cartucho data);
     void eliminar(Long id);
+    public List<Cartucho> findByMarcaNombreAndModeloContainingIgnoreCase(String nombre, String modelo);
+    public List<Cartucho> findByMarcaNombreContainingIgnoreCase(String nombre);
+    public List<Cartucho> findByModeloContainingIgnoreCase(String modelo);
 }

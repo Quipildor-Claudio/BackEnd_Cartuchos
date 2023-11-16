@@ -64,16 +64,17 @@ public class ImpresoraController {
         return ResponseEntity.notFound().build();
     }
 
-    @GetMapping("/buscar-impresora/{modelo}/{nombre}")
-    public List<Impresora> filtrarImpresora(@PathVariable String modelo,String nombre){
-        return service.findByModeloAndMarcaNombreContainingIgnoreCase(modelo,nombre);
+    // Busca por la marca del nombre tiene que ser especifica  y  cualquier modelo
+    @GetMapping("/buscar-impresora/{nombre}/{modelo}")
+    public List<Impresora> filtrarImpresora(@PathVariable  String nombre,@PathVariable String modelo){
+        return service.findByMarcaNombreAndModeloContainingIgnoreCase(nombre,modelo);
     }
-
+    // busqueda por modelo
     @GetMapping("/buscar-modelo/{modelo}")
     public List<Impresora> filtrarImpresoraModelo(@PathVariable String modelo){
         return service.findByModeloContainingIgnoreCase(modelo);
     }
-
+    // busqueda por el nombre de marca
     @GetMapping("/buscar-marca/{nombre}")
     public List<Impresora> filtrarImpresoraMarca(@PathVariable String nombre){
         return service.findByMarcaNombreContainingIgnoreCase(nombre);

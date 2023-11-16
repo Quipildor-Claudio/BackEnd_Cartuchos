@@ -34,8 +34,8 @@ public class ImpresoraServiceImpl implements  ImpresoraService {
     }
 
     @Override
-    public List<Impresora> findByModeloAndMarcaNombreContainingIgnoreCase(String modelo, String nombre) {
-        return repository.findByModeloAndMarcaNombreContainingIgnoreCase(modelo,nombre);
+    public List<Impresora> findByMarcaNombreAndModeloContainingIgnoreCase(String nombre,String modelo) {
+        return repository.findByMarcaNombreAndModeloContainingIgnoreCase(nombre,modelo);
     }
 
     @Override

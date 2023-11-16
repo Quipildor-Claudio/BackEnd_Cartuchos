@@ -22,6 +22,10 @@ public class Solicitud implements Serializable {
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Cartucho> cartuchos;
 
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Impresora> impresoras;
+
     private Date fecha_creacion;
     private Date fecha_actualizacion;
 
@@ -99,5 +103,13 @@ public class Solicitud implements Serializable {
 
     public void setCartuchos(List<Cartucho> cartuchos) {
         this.cartuchos = cartuchos;
+    }
+
+    public List<Impresora> getImpresoras() {
+        return impresoras;
+    }
+
+    public void setImpresoras(List<Impresora> impresoras) {
+        this.impresoras = impresoras;
     }
 }

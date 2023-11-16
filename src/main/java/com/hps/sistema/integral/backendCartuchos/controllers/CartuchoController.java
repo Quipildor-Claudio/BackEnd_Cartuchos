@@ -2,6 +2,7 @@ package com.hps.sistema.integral.backendCartuchos.controllers;
 
 
 import com.hps.sistema.integral.backendCartuchos.models.entities.Cartucho;
+import com.hps.sistema.integral.backendCartuchos.models.entities.Impresora;
 import com.hps.sistema.integral.backendCartuchos.services.CartuchoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -65,4 +66,23 @@ public class CartuchoController {
         }
         return ResponseEntity.notFound().build();
     }
+
+    // Busca por la marca del nombre tiene que ser especifica  y  cualquier modelo
+    @GetMapping("/buscar-cartucho/{nombre}/{modelo}")
+    public List<Cartucho> filtrarCArtucho(@PathVariable  String nombre, @PathVariable String modelo){
+        return service.findByMarcaNombreAndModeloContainingIgnoreCase(nombre, modelo);
+    }
+
+    @GetMapping("/cartucho-modelo/{modelo}")
+    public List<Cartucho> filtrarCartuchoraModelo(@PathVariable String modelo){
+        return service.findByModeloContainingIgnoreCase(modelo);
+    }
+
+    @GetMapping("/cartucho-marca/{nombre}")
+    public List<Cartucho> filtrarCartuchoMarca(@PathVariable String nombre){
+        return service.findByMarcaNombreContainingIgnoreCase(nombre);
+    }
+
+
+
 }

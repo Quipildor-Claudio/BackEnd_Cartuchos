@@ -33,4 +33,19 @@ public class CartuchoServiceImpl implements CartuchoService{
     public void eliminar(Long id) {
         repository.deleteById(id);
     }
+
+    @Override
+    public List<Cartucho> findByMarcaNombreAndModeloContainingIgnoreCase(String nombre, String modelo) {
+        return repository.findByMarcaNombreAndModeloContainingIgnoreCase(nombre, modelo);
+    }
+
+    @Override
+    public List<Cartucho> findByMarcaNombreContainingIgnoreCase(String nombre) {
+        return repository.findByMarcaNombreContainingIgnoreCase(nombre);
+    }
+
+    @Override
+    public List<Cartucho> findByModeloContainingIgnoreCase(String modelo) {
+        return repository.findByModeloContainingIgnoreCase(modelo);
+    }
 }
