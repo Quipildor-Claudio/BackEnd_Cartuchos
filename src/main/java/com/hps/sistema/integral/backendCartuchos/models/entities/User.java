@@ -23,7 +23,7 @@ public class User {
 
     private Boolean enabled;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "persona_id")
     private Persona persona;
 
@@ -33,7 +33,12 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "rol_id"),
             uniqueConstraints ={@UniqueConstraint(columnNames = {"user_id","rol_id"})}
     )
+
     private List<Rol> roles;
+
+    @JsonIgnoreProperties(value = {"usuarios", "hibernateLazyInitializer", "handler"}, allowSetters = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.ALL)
+    private List<Solicitud> solicitudes;
     @Temporal(TemporalType.DATE)
     private Date createAt;
 
@@ -109,5 +114,13 @@ public class User {
 
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public List<Solicitud> getSolicitudes() {
+        return solicitudes;
+    }
+
+    public void setSolicitudes(List<Solicitud> solicitudes) {
+        this.solicitudes = solicitudes;
     }
 }

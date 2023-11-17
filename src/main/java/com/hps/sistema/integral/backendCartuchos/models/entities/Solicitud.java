@@ -18,18 +18,39 @@ public class Solicitud implements Serializable {
     private String observacion;
     private String justificacion;
     private Integer cantidad;
+
+
+    @JsonIgnoreProperties(value={"solicitudes", "hibernateLazyInitializer", "handler"}, allowSetters=true)
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User usuario;
+
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "estado_id")
+    private Estado estado;
+
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     private List<Cartucho> cartuchos;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     private List<Impresora> impresoras;
+
+
+
     @Temporal(TemporalType.DATE)
     private Date fecha_creacion;
     @Temporal(TemporalType.DATE)
     private Date fecha_actualizacion;
 
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
 
 
     @PrePersist
@@ -112,5 +133,13 @@ public class Solicitud implements Serializable {
 
     public void setImpresoras(List<Impresora> impresoras) {
         this.impresoras = impresoras;
+    }
+
+    public User getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(User usuario) {
+        this.usuario = usuario;
     }
 }
