@@ -25,8 +25,9 @@ public class Solicitud implements Serializable {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Impresora> impresoras;
-
+    @Temporal(TemporalType.DATE)
     private Date fecha_creacion;
+    @Temporal(TemporalType.DATE)
     private Date fecha_actualizacion;
 
 
