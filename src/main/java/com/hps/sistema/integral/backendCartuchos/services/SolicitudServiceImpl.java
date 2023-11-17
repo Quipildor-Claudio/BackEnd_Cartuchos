@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.FileNotFoundException;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,6 +38,16 @@ public class SolicitudServiceImpl implements SolicitudService {
     @Override
     public void eliminar(Long id) {
             repository.deleteById(id);
+    }
+
+    @Override
+    public List<Solicitud> findByFechaCreacionBetween(Date fechaInicio, Date fechaFinal) {
+        return repository.findByFechaCreacionBetween(fechaInicio, fechaFinal);
+    }
+
+    @Override
+    public List<Solicitud> findByEstadoDescripcion(String nombre) {
+        return repository.findByEstadoDescripcion(nombre);
     }
 
     @Override

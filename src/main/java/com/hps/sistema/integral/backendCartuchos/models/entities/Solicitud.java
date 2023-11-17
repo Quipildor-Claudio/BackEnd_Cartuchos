@@ -40,7 +40,7 @@ public class Solicitud implements Serializable {
 
 
     @Temporal(TemporalType.DATE)
-    private Date fecha_creacion;
+    private Date fechaCreacion;
     @Temporal(TemporalType.DATE)
     private Date fecha_actualizacion;
 
@@ -55,7 +55,7 @@ public class Solicitud implements Serializable {
 
     @PrePersist
     public void prePersist(){
-        this.fecha_creacion=new Date();
+        this.fechaCreacion=new Date();
     }
 
     public Solicitud() {
@@ -103,12 +103,12 @@ public class Solicitud implements Serializable {
         this.cantidad = cantidad;
     }
 
-    public Date getFecha_creacion() {
-        return fecha_creacion;
+    public Date getFechaCreacion() {
+        return fechaCreacion;
     }
 
-    public void setFecha_creacion(Date fecha_creacion) {
-        this.fecha_creacion = fecha_creacion;
+    public void setFechaCreacion(Date fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
     }
 
     public Date getFecha_actualizacion() {

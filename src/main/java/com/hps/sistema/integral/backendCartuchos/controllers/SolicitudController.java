@@ -12,6 +12,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.FileNotFoundException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -76,5 +80,30 @@ public class SolicitudController {
         headers.setContentType(MediaType.APPLICATION_PDF);
         headers.setContentDispositionFormData("petsReport", "solitudMensualReport.pdf");
         return ResponseEntity.ok().headers(headers).body(service.exportPdf());
+    }
+
+    @GetMapping("/solicitudes/buscarPorFecha/{fechaInicio}/{fechaFinal}")
+    public List<Solicitud> buscarPorFecha(
+            @PathVariable String fechaInicio,
+            @PathVariable  String fechaFinal) {
+
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+
+        Date fecha,fecha2;
+        try {
+            // Convierte el String a un objeto Date
+            fecha = formatoFecha.parse(fechaInicio);
+            fecha2 = formatoFecha.parse(fechaFinal);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+
+
+        return service.findByFechaCreacionBetween(fecha, fecha2);
+    }
+
+    @GetMapping("/solicitudes/buscarPorEstado/{nombre}")
+    public List<Solicitud> buscarPorEstado(@PathVariable String nombre){
+        return  service.findByEstadoDescripcion(nombre);
     }
 }
