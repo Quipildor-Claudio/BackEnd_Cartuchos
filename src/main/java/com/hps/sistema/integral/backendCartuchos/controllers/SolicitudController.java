@@ -58,6 +58,7 @@ public class SolicitudController {
             dataDb.setObservacion(updata.getObservacion());
             dataDb.setCartuchos(updata.getCartuchos());
             dataDb.setImpresoras(updata.getImpresoras());
+            dataDb.setTipoCarga(updata.getTipoCarga());
             dataDb.setFecha_actualizacion(new Date());
             return ResponseEntity.status(HttpStatus.CREATED).body(service.guardar(dataDb));
         }

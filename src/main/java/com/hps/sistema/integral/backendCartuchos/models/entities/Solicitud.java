@@ -29,6 +29,10 @@ public class Solicitud implements Serializable {
     @JoinColumn(name = "estado_id")
     private Estado estado;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "tipo_carga_id")
+    private TipoCarga tipoCarga;
+
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToMany
     private List<Cartucho> cartuchos;
@@ -43,6 +47,14 @@ public class Solicitud implements Serializable {
     private Date fechaCreacion;
     @Temporal(TemporalType.DATE)
     private Date fecha_actualizacion;
+
+    public TipoCarga getTipoCarga() {
+        return tipoCarga;
+    }
+
+    public void setTipoCarga(TipoCarga tipoCarga) {
+        this.tipoCarga = tipoCarga;
+    }
 
     public Estado getEstado() {
         return estado;
@@ -142,4 +154,8 @@ public class Solicitud implements Serializable {
     public void setUsuario(User usuario) {
         this.usuario = usuario;
     }
+
+
+
+
 }

@@ -26,7 +26,7 @@
 		<field name="justificacion" class="java.lang.String"/>
 		<field name="observacion" class="java.lang.String"/>
 		<field name="cantidad" class="java.lang.Integer"/>
-		<field name="fecha_creacion" class="java.util.Date"/>
+		<field name="fechaCreacion" class="java.util.Date"/>
 		<sortField name="id"/>
 	</subDataset>
 	<parameter name="solitudData" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
@@ -163,7 +163,7 @@
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font size="12"/>
 								</textElement>
-								<textFieldExpression><![CDATA[$F{fecha_creacion}]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{fechaCreacion}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
