@@ -49,7 +49,7 @@ public class CartuchoController {
             dataDb.setDescripcion(updata.getDescripcion());
             dataDb.setModelo(updata.getModelo());
             dataDb.setMarca(updata.getMarca());
-            dataDb.setTipoCarga(updata.getTipoCarga());
+
             dataDb.setTipoCartucho(updata.getTipoCartucho());
 
             return ResponseEntity.status(HttpStatus.CREATED).body(service.guardar(dataDb));

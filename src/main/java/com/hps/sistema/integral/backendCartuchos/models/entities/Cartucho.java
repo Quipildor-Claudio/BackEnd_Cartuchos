@@ -31,11 +31,6 @@ public class Cartucho implements Serializable {
     @JoinColumn(name = "tipo_cartucho_id")
     private TipoCartucho tipoCartucho;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "tipo_carga_id")
-    private TipoCarga tipoCarga;
-
-
     private Date fecha_creacion;
 
 
@@ -43,14 +38,6 @@ public class Cartucho implements Serializable {
 
 
     }
-    public TipoCarga getTipoCarga() {
-        return tipoCarga;
-    }
-
-    public void setTipoCarga(TipoCarga tipoCarga) {
-        this.tipoCarga = tipoCarga;
-    }
-
 
     public Marca getMarca() {
         return marca;

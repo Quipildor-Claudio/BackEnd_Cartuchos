@@ -33,7 +33,6 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "rol_id"),
             uniqueConstraints ={@UniqueConstraint(columnNames = {"user_id","rol_id"})}
     )
-
     private List<Rol> roles;
 
     @JsonIgnoreProperties(value = {"usuarios", "hibernateLazyInitializer", "handler"}, allowSetters = true)
