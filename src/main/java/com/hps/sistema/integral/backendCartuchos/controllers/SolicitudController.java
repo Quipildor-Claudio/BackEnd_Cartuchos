@@ -53,12 +53,12 @@ public class SolicitudController {
         if(data.isPresent()){
             Solicitud dataDb = data.get();
            dataDb.setCantidad(updata.getCantidad());
-           dataDb.setDescripcion(updata.getDescripcion());
             dataDb.setJustificacion(updata.getJustificacion());
             dataDb.setObservacion(updata.getObservacion());
             dataDb.setCartuchos(updata.getCartuchos());
             dataDb.setImpresoras(updata.getImpresoras());
             dataDb.setTipoCarga(updata.getTipoCarga());
+            dataDb.setEstado(updata.getEstado());
             dataDb.setFecha_actualizacion(new Date());
             return ResponseEntity.status(HttpStatus.CREATED).body(service.guardar(dataDb));
         }

@@ -23,9 +23,6 @@ public class User {
 
     private Boolean enabled;
 
-
-
-   // @OneToOne(mappedBy = "user")
     @OneToOne
     @JoinColumn(name = "persona_id")
     private Persona persona;

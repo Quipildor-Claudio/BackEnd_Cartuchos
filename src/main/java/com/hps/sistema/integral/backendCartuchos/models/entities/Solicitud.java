@@ -14,16 +14,13 @@ public class Solicitud implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String descripcion;
     private String observacion;
     private String justificacion;
     private Integer cantidad;
 
-
     @JsonIgnoreProperties(value={"solicitudes", "hibernateLazyInitializer", "handler"}, allowSetters=true)
     @ManyToOne(fetch = FetchType.LAZY)
     private User usuario;
-
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "estado_id")
@@ -83,13 +80,6 @@ public class Solicitud implements Serializable {
         this.id = id;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
 
     public String getObservacion() {
         return observacion;
