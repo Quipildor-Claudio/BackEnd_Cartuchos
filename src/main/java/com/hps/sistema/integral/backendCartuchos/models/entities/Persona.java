@@ -15,14 +15,17 @@ public class Persona implements Serializable {
 
     private String apellido;
     private String nombre;
-    private Integer dni;
+    private String dni;
 
-    @ManyToOne
+
+    @ManyToOne()
     @JoinColumn(name = "servicio_id")
     private Servicio servicio;
 
     @Temporal(TemporalType.DATE)
     private Date createAt;
+
+
 
     //------------------- CONSTRUCTOR
 
@@ -58,11 +61,11 @@ public class Persona implements Serializable {
         this.nombre = nombre;
     }
 
-    public Integer getDni() {
+    public String getDni() {
         return dni;
     }
 
-    public void setDni(Integer dni) {
+    public void setDni(String dni) {
         this.dni = dni;
     }
 

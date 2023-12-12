@@ -12,5 +12,6 @@ public interface PersonaService {
     Persona guardar(Persona data);
     void eliminar(Long id);
 
-    Optional<Persona> findByDni(Integer dni);
+    Optional<Persona> findByDni(String dni);
+    List<Persona> findByDniContainingIgnoreCase(String dni);
 }

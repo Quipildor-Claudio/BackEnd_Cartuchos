@@ -33,7 +33,12 @@ public class PersonaServiceImpl implements PersonaService{
     }
 
     @Override
-    public Optional<Persona> findByDni(Integer dni) {
+    public Optional<Persona> findByDni(String dni) {
         return repository.findByDni(dni);
+    }
+
+    @Override
+    public List<Persona> findByDniContainingIgnoreCase(String dni) {
+        return repository.findByDniContainingIgnoreCase(dni);
     }
 }

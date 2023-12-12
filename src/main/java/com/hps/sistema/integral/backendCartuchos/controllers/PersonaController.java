@@ -1,5 +1,6 @@
 package com.hps.sistema.integral.backendCartuchos.controllers;
 
+import com.hps.sistema.integral.backendCartuchos.models.entities.Cartucho;
 import com.hps.sistema.integral.backendCartuchos.models.entities.Persona;
 import com.hps.sistema.integral.backendCartuchos.services.PersonaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,12 +63,16 @@ public class PersonaController {
     }
 
     @GetMapping("/pordni/{dni}")
-    public ResponseEntity<?> personaDni(@PathVariable Integer dni){
+    public ResponseEntity<?> personaDni(@PathVariable String dni){
         Optional<Persona> persona = service.findByDni(dni);
         if (persona.isPresent()){
             return ResponseEntity.ok().body(persona.get()) ;
         }
         return ResponseEntity.notFound().build(); /** responde con un 404 el build genra el mensaje*/
+    }
 
+    @GetMapping("constrainDni/{dni}")
+    public List<Persona> filtrarPersonaDni(@PathVariable String dni){
+        return service.findByDniContainingIgnoreCase(dni);
     }
 }

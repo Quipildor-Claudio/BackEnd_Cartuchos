@@ -36,6 +36,13 @@ INSERT INTO impresoras (marca_id,tipo_impresora_id,descripcion,modelo) VALUES (2
 
 INSERT INTO impresoras (marca_id,tipo_impresora_id,descripcion,modelo) VALUES (1,1,'Impresora a color multifunción Epson Expression XP-2101 con wifi ','Deskjet Ink Advantage 2775');
 
+INSERT INTO impresoras_cartuchos (cartuchos_id,impresora_id) VALUES (1,1);
+INSERT INTO impresoras_cartuchos (cartuchos_id,impresora_id) VALUES (2,1);
+
+INSERT INTO impresoras_cartuchos (cartuchos_id,impresora_id) VALUES (5,2);
+INSERT INTO impresoras_cartuchos (cartuchos_id,impresora_id) VALUES (6,2);
+
+
 INSERT INTO `personas` (`create_at`, `dni`, `servicio_id`, `apellido`, `nombre`) VALUES (NOW(), 999, 1,'ADMIN','ADMIN');
 INSERT INTO `personas` (`create_at`, `dni`, `servicio_id`, `apellido`, `nombre`) VALUES (NOW(), 111, 2,'COMPUTO','COMPUTO');
 

@@ -27,7 +27,7 @@ public class Impresora implements Serializable {
     private Marca marca;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     private List<Cartucho> cartuchos;
 
     private Date fecha_creacion;

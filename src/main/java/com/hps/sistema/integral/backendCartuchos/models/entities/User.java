@@ -23,7 +23,10 @@ public class User {
 
     private Boolean enabled;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+
+
+   // @OneToOne(mappedBy = "user")
+    @OneToOne
     @JoinColumn(name = "persona_id")
     private Persona persona;
 
@@ -122,4 +125,6 @@ public class User {
     public void setSolicitudes(List<Solicitud> solicitudes) {
         this.solicitudes = solicitudes;
     }
+
+
 }
