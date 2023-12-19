@@ -16,7 +16,7 @@ public class Solicitud implements Serializable {
     private Long id;
     private String observacion;
     private String justificacion;
-    private Integer cantidad;
+    private Integer total;
 
     @JsonIgnoreProperties(value={"solicitudes", "hibernateLazyInitializer", "handler"}, allowSetters=true)
     @ManyToOne(fetch = FetchType.LAZY)
@@ -26,40 +26,15 @@ public class Solicitud implements Serializable {
     @JoinColumn(name = "estado_id")
     private Estado estado;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "tipo_carga_id")
-    private TipoCarga tipoCarga;
-
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @ManyToMany
-    private List<Cartucho> cartuchos;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToMany
     private List<Impresora> impresoras;
 
-
-
-    @Temporal(TemporalType.DATE)
-    private Date fechaCreacion;
-    @Temporal(TemporalType.DATE)
-    private Date fecha_actualizacion;
-
-    public TipoCarga getTipoCarga() {
-        return tipoCarga;
-    }
-
-    public void setTipoCarga(TipoCarga tipoCarga) {
-        this.tipoCarga = tipoCarga;
-    }
-
-    public Estado getEstado() {
-        return estado;
-    }
-
-    public void setEstado(Estado estado) {
-        this.estado = estado;
-    }
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JoinColumn(name = "solicitud_id")
+    private List<ItemSolicitud> itemSolicituds;
 
 
     @PrePersist
@@ -70,7 +45,6 @@ public class Solicitud implements Serializable {
     public Solicitud() {
 
     }
-
 
     public Long getId() {
         return id;
@@ -97,14 +71,6 @@ public class Solicitud implements Serializable {
         this.justificacion = justificacion;
     }
 
-    public Integer getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(Integer cantidad) {
-        this.cantidad = cantidad;
-    }
-
     public Date getFechaCreacion() {
         return fechaCreacion;
     }
@@ -119,14 +85,6 @@ public class Solicitud implements Serializable {
 
     public void setFecha_actualizacion(Date fecha_actualizacion) {
         this.fecha_actualizacion = fecha_actualizacion;
-    }
-
-    public List<Cartucho> getCartuchos() {
-        return cartuchos;
-    }
-
-    public void setCartuchos(List<Cartucho> cartuchos) {
-        this.cartuchos = cartuchos;
     }
 
     public List<Impresora> getImpresoras() {
@@ -144,8 +102,32 @@ public class Solicitud implements Serializable {
     public void setUsuario(User usuario) {
         this.usuario = usuario;
     }
+    @Temporal(TemporalType.DATE)
+    private Date fechaCreacion;
+    @Temporal(TemporalType.DATE)
+    private Date fecha_actualizacion;
 
+    public Estado getEstado() {
+        return estado;
+    }
 
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
 
+    public Integer getTotal() {
+        return total;
+    }
 
+    public void setTotal(Integer total) {
+        this.total = total;
+    }
+
+    public List<ItemSolicitud> getItemSolicituds() {
+        return itemSolicituds;
+    }
+
+    public void setItemSolicituds(List<ItemSolicitud> itemSolicituds) {
+        this.itemSolicituds = itemSolicituds;
+    }
 }
