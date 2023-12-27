@@ -51,10 +51,10 @@ INSERT INTO `personas` (`create_at`, `dni`, `servicio_id`, `apellido`, `nombre`)
 INSERT INTO `personas` (`create_at`, `dni`, `servicio_id`, `apellido`, `nombre`) VALUES (NOW(),24612995, 5,'POCLAVA','SILVIA FERNANDA');
 
 
-INSERT INTO `user` (`create_at`, `enabled`, `persona_id`, `username`, `email`, `password`) VALUES (NOW(), true, 1, 'admin', 'admin@gmail.com','123');
-INSERT INTO `user` (`create_at`, `enabled`, `persona_id`, `username`, `email`, `password`) VALUES (NOW(), true, 2, 'computo', 'computo@gmail.com','123');
-INSERT INTO `user` (`create_at`, `enabled`, `persona_id`, `username`, `email`, `password`) VALUES (NOW(), true, 3, 'guzman', 'guszman@gmail.com','123');
-INSERT INTO `user` (`create_at`, `enabled`, `persona_id`, `username`, `email`, `password`) VALUES (NOW(), true, 4, 'silvia', 'silvia@gmail.com','123');
+INSERT INTO `user` (`create_at`, `enabled`, `persona_id`, `username`, `email`, `password`) VALUES (NOW(), true, 1, 'admin', 'admin@gmail.com','$2a$10$DOMDxjYyfZ/e7RcBfUpzqeaCs8pLgcizuiQWXPkU35nOhZlFcE9MS');
+INSERT INTO `user` (`create_at`, `enabled`, `persona_id`, `username`, `email`, `password`) VALUES (NOW(), true, 2, 'computo', 'computo@gmail.com','$2a$10$DOMDxjYyfZ/e7RcBfUpzqeaCs8pLgcizuiQWXPkU35nOhZlFcE9MS');
+INSERT INTO `user` (`create_at`, `enabled`, `persona_id`, `username`, `email`, `password`) VALUES (NOW(), true, 3, 'guzman', 'guszman@gmail.com','$2a$10$DOMDxjYyfZ/e7RcBfUpzqeaCs8pLgcizuiQWXPkU35nOhZlFcE9MS');
+INSERT INTO `user` (`create_at`, `enabled`, `persona_id`, `username`, `email`, `password`) VALUES (NOW(), true, 4, 'silvia', 'silvia@gmail.com','$2a$10$DOMDxjYyfZ/e7RcBfUpzqeaCs8pLgcizuiQWXPkU35nOhZlFcE9MS');
 
 
 INSERT INTO `users_roles` (`rol_id`, `user_id`) VALUES (1, 1);

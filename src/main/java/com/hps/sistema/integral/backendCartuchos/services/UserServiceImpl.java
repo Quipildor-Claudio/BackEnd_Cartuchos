@@ -3,6 +3,7 @@ package com.hps.sistema.integral.backendCartuchos.services;
 import com.hps.sistema.integral.backendCartuchos.models.entities.User;
 import com.hps.sistema.integral.backendCartuchos.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,6 +12,8 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService{
     @Autowired
     UserRepository repository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public List<User> listar() {
@@ -24,6 +27,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User guardar(User data) {
+        data.setPassword(passwordEncoder.encode(data.getPassword()));
         return repository.save(data);
     }
 

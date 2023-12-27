@@ -58,7 +58,6 @@ public class SolicitudController {
             dataDb.setEstado(updata.getEstado());
             dataDb.setTotal(updata.getTotal());
             dataDb.setItemSolicituds(updata.getItemSolicituds());
-
             dataDb.setFecha_actualizacion(new Date());
             return ResponseEntity.status(HttpStatus.CREATED).body(service.guardar(dataDb));
         }
