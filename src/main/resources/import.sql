@@ -13,7 +13,7 @@ INSERT INTO colores (nombre) VALUES ('NEGRO (BLACK)'),('COLOR(C,M,Y)'),('CIAN (C
 
 INSERT INTO tipo_impresoras (descripcion) VALUES ('INYECCION DE TINTA'),('LASER'),('MULTIFUNCION'),('TONER');
 
-INSERT INTO estados (descripcion) VALUES ('SOLICITADA'),('APROBADA'),('OBSERVADA'),('CANCELADA');
+INSERT INTO estados (descripcion) VALUES ('SOLICITADA'),('APROBADA'),('OBSERVADA'),('CANCELADA'),('VENCIDA'),('PENDIENTE');
 
 
 INSERT INTO cartuchos (color_id, marca_id,tipo_cartucho_id ,capacidad, descripcion, modelo) VALUES (1,2, 1,'80 ml','Para impresoras DesignJet T120 / T130 / T520.','Hp 711xl');

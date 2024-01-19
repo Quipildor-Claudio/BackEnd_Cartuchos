@@ -5,6 +5,10 @@ import com.hps.sistema.integral.backendCartuchos.models.entities.Solicitud;
 import com.hps.sistema.integral.backendCartuchos.services.SolicitudService;
 import net.sf.jasperreports.engine.JRException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,9 +20,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @CrossOrigin(origins = "*",allowedHeaders = "*")
 @RestController
@@ -29,6 +31,12 @@ public class SolicitudController {
     @GetMapping("/solicitudes")
     public List<Solicitud> listar(){
         return service.listar();
+    }
+
+    @GetMapping("/solicitudes/page/{page}")
+    public Page<Solicitud> pageablelistar(@PathVariable Integer page){
+        Pageable pageable = PageRequest.of(page,2);
+        return service.listar(pageable);
     }
 
     @GetMapping("/solicitudes/{id}")
@@ -66,12 +74,19 @@ public class SolicitudController {
 
     @DeleteMapping("/solicitudes/{id}")
     public ResponseEntity<?> eliminar(@PathVariable Long id){
-        Optional<Solicitud> data = service.porId(id);
-        if(data.isPresent()){
+        Map<String, Object> response = new HashMap<>();
+
+        try {
             service.eliminar(id);
-            return ResponseEntity.noContent().build();
+        } catch (DataAccessException e) {
+            response.put("mensaje", "Error al eliminar el registro de la base de datos");
+            response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return ResponseEntity.notFound().build();
+
+        response.put("mensaje", "El registro eliminado con éxito!");
+
+        return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
     }
 
     @GetMapping("/solicitudes/export-pdf")

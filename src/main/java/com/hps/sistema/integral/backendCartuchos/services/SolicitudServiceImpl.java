@@ -5,7 +5,10 @@ import com.hps.sistema.integral.backendCartuchos.models.entities.Solicitud;
 import com.hps.sistema.integral.backendCartuchos.repositories.SolicitudRepository;
 import net.sf.jasperreports.engine.JRException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.FileNotFoundException;
 import java.util.Date;
@@ -21,9 +24,18 @@ public class SolicitudServiceImpl implements SolicitudService {
     SolitudesMensualesGenerator generator;
 
     @Override
+    @Transactional(readOnly = true)
     public List<Solicitud> listar() {
         return (List<Solicitud>) repository.findAll();
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<Solicitud> listar(Pageable pageable) {
+        return repository.findAll(pageable);
+    }
+
+
 
     @Override
     public Optional<Solicitud> porId(Long id) {
