@@ -3,6 +3,8 @@ package com.hps.sistema.integral.backendCartuchos.services;
 import com.hps.sistema.integral.backendCartuchos.models.entities.TipoCartucho;
 import com.hps.sistema.integral.backendCartuchos.repositories.TipoCartuchoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +19,11 @@ public class TipoCartuchoServiceImpl implements TipoCartuchoService{
     @Override
     public List<TipoCartucho> listar() {
         return (List<TipoCartucho>) repository.findAll();
+    }
+
+    @Override
+    public Page<TipoCartucho> listar(Pageable pageable) {
+        return repository.findAll(pageable);
     }
 
     @Override

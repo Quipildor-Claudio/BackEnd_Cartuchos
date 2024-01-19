@@ -16,8 +16,6 @@ public interface SolicitudService {
 
     Page<Solicitud> listar(Pageable pageable);
 
-
-
     Optional<Solicitud> porId(Long id);
     Solicitud guardar(Solicitud data);
     void eliminar(Long id);

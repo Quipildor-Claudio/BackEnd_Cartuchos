@@ -5,6 +5,8 @@ import com.hps.sistema.integral.backendCartuchos.models.entities.Color;
 import com.hps.sistema.integral.backendCartuchos.repositories.ColorRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,6 +20,11 @@ public class ColorServiceImpl implements ColorService{
     @Override
     public List<Color> listar() {
         return (List<Color>) repository.findAll();
+    }
+
+    @Override
+    public Page<Color> listar(Pageable pageable) {
+        return repository.findAll(pageable);
     }
 
     @Override

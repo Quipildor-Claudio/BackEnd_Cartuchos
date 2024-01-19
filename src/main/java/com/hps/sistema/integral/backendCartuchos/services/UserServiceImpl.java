@@ -3,6 +3,8 @@ package com.hps.sistema.integral.backendCartuchos.services;
 import com.hps.sistema.integral.backendCartuchos.models.entities.User;
 import com.hps.sistema.integral.backendCartuchos.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,11 @@ public class UserServiceImpl implements UserService{
     @Override
     public List<User> listar() {
         return (List<User>) repository.findAll();
+    }
+
+    @Override
+    public Page<User> listar(Pageable pageable) {
+        return repository.findAll(pageable);
     }
 
     @Override

@@ -3,6 +3,8 @@ package com.hps.sistema.integral.backendCartuchos.services;
 import com.hps.sistema.integral.backendCartuchos.models.entities.Servicio;
 import com.hps.sistema.integral.backendCartuchos.repositories.ServicioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +16,11 @@ public class ServicoServiceImpl implements  ServicioService{
     @Override
     public List<Servicio> listar() {
         return (List<Servicio>) repository.findAll();
+    }
+
+    @Override
+    public Page<Servicio> listar(Pageable pageable) {
+        return repository.findAll(pageable);
     }
 
     @Override

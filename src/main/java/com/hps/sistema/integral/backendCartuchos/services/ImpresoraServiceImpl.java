@@ -3,6 +3,8 @@ package com.hps.sistema.integral.backendCartuchos.services;
 import com.hps.sistema.integral.backendCartuchos.models.entities.Impresora;
 import com.hps.sistema.integral.backendCartuchos.repositories.ImpresoraRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +18,11 @@ public class ImpresoraServiceImpl implements  ImpresoraService {
     @Override
     public List<Impresora> listar() {
         return (List<Impresora>) repository.findAll();
+    }
+
+    @Override
+    public Page<Impresora> listar(Pageable pageable) {
+        return repository.findAll(pageable);
     }
 
     @Override

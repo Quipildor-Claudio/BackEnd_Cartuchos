@@ -3,6 +3,8 @@ package com.hps.sistema.integral.backendCartuchos.services;
 import com.hps.sistema.integral.backendCartuchos.models.entities.Marca;
 import com.hps.sistema.integral.backendCartuchos.repositories.MarcaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +18,11 @@ public class MarcaServiceImpl implements MarcaService{
     @Override
     public List<Marca> listar() {
         return (List<Marca>) repository.findAll();
+    }
+
+    @Override
+    public Page<Marca> listar(Pageable pageable) {
+        return repository.findAll(pageable);
     }
 
     @Override
