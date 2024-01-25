@@ -3,9 +3,13 @@ package com.hps.sistema.integral.backendCartuchos.controllers;
 
 import com.hps.sistema.integral.backendCartuchos.models.entities.Cartucho;
 import com.hps.sistema.integral.backendCartuchos.models.entities.Impresora;
+import com.hps.sistema.integral.backendCartuchos.models.entities.Solicitud;
 import com.hps.sistema.integral.backendCartuchos.services.CartuchoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +29,13 @@ public class CartuchoController {
     public List<Cartucho> listar(){
         return service.listar();
     }
+
+    @GetMapping("/cartucho/page/{page}")
+    public Page<Cartucho> listar(@PathVariable Integer page){
+        Pageable pageable = PageRequest.of(page,10);
+        return service.listar(pageable);
+    }
+
 
     @GetMapping("/cartuchos/{id}")
     public ResponseEntity<?> detalle(@PathVariable Long id){

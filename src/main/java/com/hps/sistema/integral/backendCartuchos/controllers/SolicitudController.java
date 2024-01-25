@@ -9,6 +9,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -35,7 +36,7 @@ public class SolicitudController {
 
     @GetMapping("/solicitudes/page/{page}")
     public Page<Solicitud> pageablelistar(@PathVariable Integer page){
-        Pageable pageable = PageRequest.of(page,2);
+        Pageable pageable = PageRequest.of(page,10, Sort.by("id").descending());
         return service.listar(pageable);
     }
 
@@ -113,7 +114,6 @@ public class SolicitudController {
             throw new RuntimeException(e);
         }
 
-
         return service.findByFechaCreacionBetween(fecha, fecha2);
     }
 
@@ -121,4 +121,24 @@ public class SolicitudController {
     public List<Solicitud> buscarPorEstado(@PathVariable String nombre){
         return  service.findByEstadoDescripcion(nombre);
     }
+
+    @GetMapping("/solicitudes/buscarPorServicio/page/{nombre}/{page}")
+    public Page<Solicitud> buscarPorServcio(@PathVariable String nombre,@PathVariable Integer page ){
+        Pageable pageable = PageRequest.of(page,10,Sort.by("id").descending());
+        return  service.findByUsuarioPersonaServicioNombre(nombre,pageable);
+    }
+
+    @GetMapping("/solicitudes/buscarPorUsername/page/{nombre}/{page}")
+    public Page<Solicitud> buscarPorUsername(@PathVariable String nombre,@PathVariable Integer page ){
+        Pageable pageable = PageRequest.of(page,10,Sort.by("id").descending());
+        return  service.findByUsuarioUsername(nombre,pageable);
+    }
+
+
+    @GetMapping("/solicitudes/buscarPorServicio/{nombre}")
+    public List<Solicitud> buscarPorServcio(@PathVariable String nombre){
+        return  service.findByUsuarioPersonaServicioNombre(nombre);
+    }
+
+
 }

@@ -17,13 +17,23 @@ public interface SolicitudService {
     Page<Solicitud> listar(Pageable pageable);
 
     Optional<Solicitud> porId(Long id);
+
     Solicitud guardar(Solicitud data);
+
     void eliminar(Long id);
 
     List<Solicitud> findByFechaCreacionBetween(Date fechaInicio, Date fechaFinal);
+
     List<Solicitud> findByEstadoDescripcion(String nombre);
+
+    List<Solicitud> findByUsuarioPersonaServicioNombre(String nombre);
+
+    Page<Solicitud> findByUsuarioPersonaServicioNombre(String nombre, Pageable pageable);
+
+    Page<Solicitud> findByUsuarioUsername(String nombre, Pageable pageable);
 
 
     byte[] exportPdf() throws JRException, FileNotFoundException;
+
     byte[] exportXls() throws JRException, FileNotFoundException;
 }

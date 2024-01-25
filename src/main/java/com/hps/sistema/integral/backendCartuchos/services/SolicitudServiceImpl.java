@@ -63,6 +63,22 @@ public class SolicitudServiceImpl implements SolicitudService {
     }
 
     @Override
+    public List<Solicitud> findByUsuarioPersonaServicioNombre(String nombre) {
+        return repository.findByUsuarioPersonaServicioNombre(nombre);
+    }
+
+    @Override
+    public Page<Solicitud> findByUsuarioPersonaServicioNombre(String nombre, Pageable pageable) {
+        return repository.findByUsuarioPersonaServicioNombre(nombre,pageable);
+    }
+
+    @Override
+    public Page<Solicitud> findByUsuarioUsername(String nombre, Pageable pageable) {
+        return repository.findByUsuarioUsername(nombre,pageable);
+    }
+
+
+    @Override
     public byte[] exportPdf() throws JRException, FileNotFoundException {
 
         return generator.exportToPdf((List<Solicitud>) repository.findAll());
