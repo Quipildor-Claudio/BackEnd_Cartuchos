@@ -24,7 +24,14 @@ public interface SolicitudService {
 
     List<Solicitud> findByFechaCreacionBetween(Date fechaInicio, Date fechaFinal);
 
+    List<Solicitud> findByFechaCreacionBetweenAndUsuarioPersonaServicioNombre(Date fechaInicio, Date fechaFinal,String name);
+
+
     List<Solicitud> findByEstadoDescripcion(String nombre);
+
+    List<Solicitud> findByEstadoDescripcionAndUsuarioUsername(String des, String name);
+
+    List<Solicitud> findByEstadoDescripcionAndUsuarioPersonaServicioNombre(String des, String name);
 
     List<Solicitud> findByUsuarioPersonaServicioNombre(String nombre);
 

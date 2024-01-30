@@ -117,9 +117,38 @@ public class SolicitudController {
         return service.findByFechaCreacionBetween(fecha, fecha2);
     }
 
+    @GetMapping("/solicitudes/buscarPorFechaandServico/{fechaInicio}/{fechaFinal}/{name}")
+    public List<Solicitud> buscarPorFechaServcio(
+            @PathVariable String fechaInicio,
+            @PathVariable  String fechaFinal,@PathVariable String name) {
+
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+
+        Date fecha,fecha2;
+        try {
+            // Convierte el String a un objeto Date
+            fecha = formatoFecha.parse(fechaInicio);
+            fecha2 = formatoFecha.parse(fechaFinal);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+
+        return service.findByFechaCreacionBetweenAndUsuarioPersonaServicioNombre(fecha,fecha2,name);
+    }
+
     @GetMapping("/solicitudes/buscarPorEstado/{nombre}")
     public List<Solicitud> buscarPorEstado(@PathVariable String nombre){
         return  service.findByEstadoDescripcion(nombre);
+    }
+
+    @GetMapping("/solicitudes/buscarporEstadoandUser/{des}/{name}")
+    public List<Solicitud> buscarPorEstadoAndUser(@PathVariable String des,@PathVariable String name){
+        return  service.findByEstadoDescripcionAndUsuarioUsername(des, name);
+    }
+
+    @GetMapping("/solicitudes/buscarporEstadoandServicio/{des}/{name}")
+    public List<Solicitud> buscarPorEstadoAndServico(@PathVariable String des,@PathVariable String name){
+        return  service.findByEstadoDescripcionAndUsuarioPersonaServicioNombre(des, name);
     }
 
     @GetMapping("/solicitudes/buscarPorServicio/page/{nombre}/{page}")

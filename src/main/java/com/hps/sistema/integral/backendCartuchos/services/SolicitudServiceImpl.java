@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.FileNotFoundException;
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -36,7 +37,6 @@ public class SolicitudServiceImpl implements SolicitudService {
     }
 
 
-
     @Override
     public Optional<Solicitud> porId(Long id) {
         return repository.findById(id);
@@ -49,7 +49,7 @@ public class SolicitudServiceImpl implements SolicitudService {
 
     @Override
     public void eliminar(Long id) {
-            repository.deleteById(id);
+        repository.deleteById(id);
     }
 
     @Override
@@ -58,8 +58,23 @@ public class SolicitudServiceImpl implements SolicitudService {
     }
 
     @Override
+    public List<Solicitud> findByFechaCreacionBetweenAndUsuarioPersonaServicioNombre(Date fechaInicio, Date fechaFinal, String name) {
+        return repository.findByFechaCreacionBetweenAndUsuarioPersonaServicioNombre(fechaInicio,fechaFinal,name);
+    }
+
+    @Override
     public List<Solicitud> findByEstadoDescripcion(String nombre) {
         return repository.findByEstadoDescripcion(nombre);
+    }
+
+    @Override
+    public List<Solicitud> findByEstadoDescripcionAndUsuarioUsername(String des, String name) {
+        return repository.findByEstadoDescripcionAndUsuarioUsername(des, name);
+    }
+
+    @Override
+    public List<Solicitud> findByEstadoDescripcionAndUsuarioPersonaServicioNombre(String des, String name) {
+        return repository.findByEstadoDescripcionAndUsuarioPersonaServicioNombre(des, name);
     }
 
     @Override
@@ -69,12 +84,12 @@ public class SolicitudServiceImpl implements SolicitudService {
 
     @Override
     public Page<Solicitud> findByUsuarioPersonaServicioNombre(String nombre, Pageable pageable) {
-        return repository.findByUsuarioPersonaServicioNombre(nombre,pageable);
+        return repository.findByUsuarioPersonaServicioNombre(nombre, pageable);
     }
 
     @Override
     public Page<Solicitud> findByUsuarioUsername(String nombre, Pageable pageable) {
-        return repository.findByUsuarioUsername(nombre,pageable);
+        return repository.findByUsuarioUsername(nombre, pageable);
     }
 
 
