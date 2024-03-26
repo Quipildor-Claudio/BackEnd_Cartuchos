@@ -1,13 +1,13 @@
 package com.hps.sistema.integral.backendCartuchos.auth.filters;
 import java.io.IOException;
-import java.util.Base64;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Collection;
+import java.util.*;
+
 import com.hps.sistema.integral.backendCartuchos.models.entities.User;
+import com.hps.sistema.integral.backendCartuchos.repositories.UserRepository;
+import com.hps.sistema.integral.backendCartuchos.services.UserService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -68,16 +68,18 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
         String username = ((org.springframework.security.core.userdetails.User) authResult.getPrincipal())
                 .getUsername();
+
         Collection<? extends GrantedAuthority> roles = authResult.getAuthorities();
         Claims claims = Jwts.claims();
         claims.put("authorities", new ObjectMapper().writeValueAsString(roles));
         claims.put("username",username);
+       // claims.put("name","4647979");
         String token = Jwts.builder()
                 .setClaims(claims)
                 .setSubject(username)
                 .signWith(SECRET_KEY)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + 18000000))  // 5 horas
+                .setExpiration(new Date(System.currentTimeMillis() + 28800000))  // 8 horas
                 .compact();
 
         response.addHeader(HEADER_AUTHORIZATION, PREFIX_TOKEN + token);
@@ -98,7 +100,6 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         Map<String, Object> body = new HashMap<>();
         body.put("message", "Error en la autenticacion username o password incorrecto!");
         body.put("error", failed.getMessage());
-
         response.getWriter().write(new ObjectMapper().writeValueAsString(body));
         response.setStatus(401);
         response.setContentType("application/json");

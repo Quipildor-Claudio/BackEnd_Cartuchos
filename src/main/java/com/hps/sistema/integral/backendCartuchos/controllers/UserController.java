@@ -51,11 +51,11 @@ public class UserController {
         if(data.isPresent()){
             User dataDb = data.get();
             dataDb.setUsername(updata.getUsername());
-            dataDb.setPassword(updata.getPassword());
             dataDb.setEmail(updata.getEmail());
             dataDb.setPersona(updata.getPersona());
             dataDb.setRoles(updata.getRoles());
             dataDb.setEnabled(updata.getEnabled());
+            dataDb.setPassword(updata.getPassword());
             return ResponseEntity.status(HttpStatus.CREATED).body(service.guardar(dataDb));
         }
         return ResponseEntity.notFound().build();

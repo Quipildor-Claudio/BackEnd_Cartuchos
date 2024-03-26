@@ -16,7 +16,10 @@ public class Solicitud implements Serializable {
     private Long id;
     private String observacion;
     private String justificacion;
-    private Integer total;
+    @Column(length = 50)
+    private String aprobado;
+
+    private  Boolean retirado;
 
     @JsonIgnoreProperties(value={"solicitudes", "hibernateLazyInitializer", "handler"}, allowSetters=true)
     @ManyToOne(fetch = FetchType.LAZY)
@@ -115,13 +118,7 @@ public class Solicitud implements Serializable {
         this.estado = estado;
     }
 
-    public Integer getTotal() {
-        return total;
-    }
 
-    public void setTotal(Integer total) {
-        this.total = total;
-    }
 
     public List<ItemSolicitud> getItemSolicituds() {
         return itemSolicituds;
@@ -129,5 +126,21 @@ public class Solicitud implements Serializable {
 
     public void setItemSolicituds(List<ItemSolicitud> itemSolicituds) {
         this.itemSolicituds = itemSolicituds;
+    }
+
+    public String getAprobado() {
+        return aprobado;
+    }
+
+    public void setAprobado(String aprobado) {
+        this.aprobado = aprobado;
+    }
+
+    public Boolean getRetirado() {
+        return retirado;
+    }
+
+    public void setRetirado(Boolean retirado) {
+        this.retirado = retirado;
     }
 }

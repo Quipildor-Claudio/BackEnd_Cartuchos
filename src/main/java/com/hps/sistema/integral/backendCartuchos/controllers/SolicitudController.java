@@ -65,7 +65,8 @@ public class SolicitudController {
             dataDb.setObservacion(updata.getObservacion());
             dataDb.setImpresoras(updata.getImpresoras());
             dataDb.setEstado(updata.getEstado());
-            dataDb.setTotal(updata.getTotal());
+            dataDb.setAprobado(updata.getAprobado());
+            dataDb.setRetirado(updata.getRetirado());
             dataDb.setItemSolicituds(updata.getItemSolicituds());
             dataDb.setFecha_actualizacion(new Date());
             return ResponseEntity.status(HttpStatus.CREATED).body(service.guardar(dataDb));
