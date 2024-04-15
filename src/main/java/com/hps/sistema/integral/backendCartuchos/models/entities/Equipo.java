@@ -9,7 +9,8 @@ public class Equipo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String cue;
-    private String descrpcion;
+    private String matricula;
+    private String descripcion;
     private  String modelo;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "marca_id")
@@ -35,14 +36,6 @@ public class Equipo {
         this.cue = cue;
     }
 
-    public String getDescrpcion() {
-        return descrpcion;
-    }
-
-    public void setDescrpcion(String descrpcion) {
-        this.descrpcion = descrpcion;
-    }
-
     public String getModelo() {
         return modelo;
     }
@@ -60,4 +53,19 @@ public class Equipo {
     }
 
 
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
 }

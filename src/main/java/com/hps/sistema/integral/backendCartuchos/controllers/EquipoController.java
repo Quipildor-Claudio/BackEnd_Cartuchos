@@ -48,7 +48,8 @@ public class EquipoController {
             dataDb.setCue(updata.getCue());
             dataDb.setMarca(updata.getMarca());
             dataDb.setModelo(updata.getModelo());
-            dataDb.setDescrpcion(updata.getDescrpcion());
+            dataDb.setDescripcion(updata.getDescripcion());
+            dataDb.setMatricula(updata.getMatricula());
 
             return ResponseEntity.status(HttpStatus.CREATED).body(service.guardar(dataDb));
         }

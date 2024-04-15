@@ -25,7 +25,7 @@ public class Ticket implements Serializable {
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToMany
-    private List<Equipo> equipo;
+    private List<Equipo> equipos;
     @JsonIgnoreProperties(value={"tickets", "hibernateLazyInitializer", "handler"}, allowSetters=true)
     @ManyToOne(fetch = FetchType.LAZY)
     private User usuario;
@@ -119,10 +119,10 @@ public class Ticket implements Serializable {
     }
 
     public List<Equipo> getEquipo() {
-        return equipo;
+        return equipos;
     }
 
     public void setEquipo(List<Equipo> equipo) {
-        this.equipo = equipo;
+        this.equipos = equipo;
     }
 }

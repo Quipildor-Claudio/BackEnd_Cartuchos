@@ -56,6 +56,8 @@ public class UserController {
             dataDb.setRoles(updata.getRoles());
             dataDb.setEnabled(updata.getEnabled());
             dataDb.setPassword(updata.getPassword());
+            dataDb.setSolicitudes(updata.getSolicitudes());
+            dataDb.setTickets(updata.getTickets());
             return ResponseEntity.status(HttpStatus.CREATED).body(service.guardar(dataDb));
         }
         return ResponseEntity.notFound().build();
