@@ -19,13 +19,17 @@ public class Ticket implements Serializable {
     private String observacion;
     private  String diagnostico;
     private String derivado;
+    @Temporal(TemporalType.DATE)
     private Date fecha_solicitud;
+    @Temporal(TemporalType.DATE)
     private  Date fecha_atencion;
+    @Temporal(TemporalType.DATE)
     private Date fecha_salida;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToMany
     private List<Equipo> equipos;
+
     @JsonIgnoreProperties(value={"tickets", "hibernateLazyInitializer", "handler"}, allowSetters=true)
     @ManyToOne(fetch = FetchType.LAZY)
     private User usuario;

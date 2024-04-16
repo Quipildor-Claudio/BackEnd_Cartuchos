@@ -35,13 +35,14 @@ public class User {
     )
     private List<Rol> roles;
 
-    @JsonIgnoreProperties(value = {"usuarios", "hibernateLazyInitializer", "handler"}, allowSetters = true)
+    @JsonIgnoreProperties(value = {"usuario", "hibernateLazyInitializer", "handler"}, allowSetters = true)
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.ALL)
     private List<Solicitud> solicitudes;
 
-    @JsonIgnoreProperties(value = {"usuarios", "hibernateLazyInitializer", "handler"}, allowSetters = true)
+    @JsonIgnoreProperties(value = {"usuario", "hibernateLazyInitializer", "handler"}, allowSetters = true)
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.ALL)
     private List<Ticket> tickets;
+
     @Temporal(TemporalType.DATE)
     private Date createAt;
 
