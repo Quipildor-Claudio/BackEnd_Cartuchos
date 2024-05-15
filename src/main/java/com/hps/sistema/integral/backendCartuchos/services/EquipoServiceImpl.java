@@ -32,4 +32,15 @@ public class EquipoServiceImpl implements EquipoService{
     public void eliminar(Long id) {
         repository.deleteById(id);
     }
+
+    @Override
+    public List<Equipo> findByCueContainingIgnoreCase(String cue) {
+        return repository.findByCueContainingIgnoreCase(cue);
+    }
+
+    @Override
+    public List<Equipo> findByMatriculaContainingIgnoreCase(String mat) {
+        return repository.findByMatriculaContainingIgnoreCase(mat);
+    }
+
 }

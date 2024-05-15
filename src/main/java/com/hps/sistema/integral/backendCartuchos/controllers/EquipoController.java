@@ -1,6 +1,7 @@
 package com.hps.sistema.integral.backendCartuchos.controllers;
 
 import com.hps.sistema.integral.backendCartuchos.models.entities.Equipo;
+import com.hps.sistema.integral.backendCartuchos.models.entities.Impresora;
 import com.hps.sistema.integral.backendCartuchos.services.EquipoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -71,5 +72,11 @@ public class EquipoController {
         response.put("mensaje", "El registro eliminado con éxito!");
 
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+    }
+
+    // busqueda por CUE
+    @GetMapping("/buscar-cue/{cue}")
+    public List<Equipo> filtrarEquipoCue(@PathVariable String cue) {
+        return service.findByCueContainingIgnoreCase(cue);
     }
 }

@@ -9,10 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @CrossOrigin(origins = "*",allowedHeaders = "*")
 @RestController
@@ -77,4 +76,36 @@ public class TicketController {
 
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
     }
+
+    @GetMapping("/ticket/buscarPorFechaSolicitud/{fechaInicio}/{fechaFinal}")
+    public List<Ticket> buscarPorFechaSolicitud(
+            @PathVariable String fechaInicio,
+            @PathVariable  String fechaFinal) {
+
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+
+        Date fecha,fecha2;
+        try {
+            // Convierte el String a un objeto Date
+            fecha = formatoFecha.parse(fechaInicio);
+            fecha2 = formatoFecha.parse(fechaFinal);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+
+        return service.findByFechaSolicitudBetween(fecha,fecha2);
+    }
+
+
+    @GetMapping("/ticket/buscarPorDiagnostico/{nombre}")
+    public List<Ticket> buscarPorDiagnostico(@PathVariable String nombre){
+        return  service.findByDiagnostico(nombre);
+    }
+
+    @GetMapping("/ticket/buscarPorTecnicoAsignado/{nombre}")
+    public List<Ticket> buscarPorTecnicoAsignado(@PathVariable String nombre){
+        return  service.findByTecnicoAsignado(nombre);
+    }
+
+
 }

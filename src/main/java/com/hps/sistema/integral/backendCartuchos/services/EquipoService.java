@@ -9,8 +9,9 @@ import java.util.Optional;
 
 public interface EquipoService {
     List<Equipo> listar();
-
     Optional<Equipo> porId(Long id);
     Equipo guardar(Equipo data);
     void eliminar(Long id);
+    List<Equipo> findByCueContainingIgnoreCase(String cue);
+    List<Equipo> findByMatriculaContainingIgnoreCase(String mat);
 }
